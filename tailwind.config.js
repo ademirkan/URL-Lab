@@ -17,6 +17,15 @@ module.exports = {
                     "100%": { opacity: "0", visibility: "hidden" },
                 },
             },
+
+            // fontSize: {
+            //     hero: "min(7vw, 3.5rem)",
+            // },
+
+            // gap: {
+            //     hero: "min(1vh, 15px)",
+            // },
+
             animation: {
                 visible: "visible 0.25s ease-in forwards",
                 invisible: "invisible 0.25s ease-out forwards",

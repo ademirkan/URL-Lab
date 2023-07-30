@@ -1,70 +1,129 @@
 "use client";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 import useIsScrollAtTop from "@/hooks/useIsScrollAtTop";
+import useMediaQuery from "@/hooks/useMediaQuery";
+import { useEffect, useState } from "react";
+import DropdownNavbar from "./DropdownNavbar";
+import { Turn as Hamburger } from "hamburger-react";
 
 export default function Header() {
     const isScrollAtTop = useIsScrollAtTop();
+    const isMobile = useMediaQuery("(max-width: 768px)");
+    const [isHamburgerToggled, setIsHamburgerToggled] = useState(false);
+
+    const handleToggle = (toggled: boolean) => {
+        document.body.style.overflow = toggled ? "hidden" : "auto";
+    };
+
+    useEffect(() => {
+        if (isMobile) {
+            return;
+        }
+
+        setIsHamburgerToggled(false);
+        handleToggle(false);
+    }, [isMobile]);
 
     return (
-        <header className="fixed flex flex-row w-[100%] h-20 items-center gap-12">
-            <nav className="flex flex-row items-center flex-grow justify-between px-[5%]">
-                <Logo />
-                <div
-                    className={`${
-                        !isScrollAtTop ? "animate-invisible" : "animate-visible"
-                    }`}
+        <>
+            <header className="fixed flex flex-row w-[100%] h-20 items-center gap-12 z-50">
+                <nav className="flex flex-row items-center flex-grow justify-between px-[5%]">
+                    <Logo />
+                    <div
+                        className={`${
+                            !isScrollAtTop
+                                ? "animate-invisible"
+                                : "animate-visible"
+                        }`}
+                    >
+                        <ul
+                            className={`md:flex hidden flex-row relative top-[-1px] gap-4`}
+                        >
+                            <li>
+                                <a href="#nav-left" className="txtbtn btn-sm">
+                                    Shorten
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#nav-left" className="txtbtn btn-sm">
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#nav-left" className="txtbtn btn-sm">
+                                    Contribute
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="nav-right">
+                        <ul
+                            id="nav-login-btns"
+                            className="flex-row gap-2 md:flex hidden"
+                        >
+                            <li>
+                                <button className="btn btn-outline btn-sm">
+                                    Log in
+                                </button>
+                            </li>
+                            <li>
+                                <button className="btn btn-primary btn-sm">
+                                    Sign up
+                                </button>
+                            </li>
+                        </ul>
+                        {isMobile && (
+                            <div
+                                id="nav-hamburger"
+                                className="txtbtn md:hidden"
+                            >
+                                <Hamburger
+                                    toggled={isHamburgerToggled}
+                                    toggle={setIsHamburgerToggled}
+                                    onToggle={handleToggle}
+                                    color="hsl(var(--p))"
+                                    distance="lg"
+                                    size={28}
+                                    rounded
+                                    direction="right"
+                                ></Hamburger>
+                            </div>
+                        )}
+                    </div>
+                </nav>
+            </header>
+            <DropdownNavbar isOpen={isMobile && isHamburgerToggled}>
+                <ul
+                    className={`flex flex-col items-center relative gap-4 w-[80%]`}
                 >
-                    <ul
-                        className={`md:flex hidden flex-row relative top-[-1px] gap-4`}
-                    >
-                        <li>
-                            <a href="#nav-left" className="txtbtn btn-sm">
-                                Shorten
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#nav-left" className="txtbtn btn-sm">
-                                About
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#nav-left" className="txtbtn btn-sm">
-                                Contribute
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div id="nav-right">
-                    <ul
-                        id="nav-login-btns"
-                        className="flex-row gap-2 md:flex hidden"
-                    >
-                        <li>
-                            <button className="btn btn-outline btn-sm">
-                                Log in
-                            </button>
-                        </li>
-                        <li>
-                            <button className="btn btn-primary btn-sm">
-                                Sign up
-                            </button>
-                        </li>
-                    </ul>
-                    <button
-                        id="nav-hamburger"
-                        className="btn btn-ghost h-14 w-14 md:hidden"
-                    >
-                        <FontAwesomeIcon
-                            icon={faBars}
-                            className="text-primary"
-                            size="2xl"
-                        />
-                    </button>
-                </div>
-            </nav>
-        </header>
+                    <li>
+                        <button className="btn btn-primary btn-sm">
+                            Sign up
+                        </button>
+                    </li>
+                    <li>
+                        <button className="btn btn-outline btn-sm">
+                            Log in
+                        </button>
+                    </li>
+                    <li>
+                        <a href="#nav-left" className="txtbtn btn-sm">
+                            Shorten
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#nav-left" className="txtbtn btn-sm">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#nav-left" className="txtbtn btn-sm">
+                            Contribute
+                        </a>
+                    </li>
+                </ul>
+            </DropdownNavbar>
+        </>
     );
 }
 
