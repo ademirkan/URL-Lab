@@ -11,9 +11,12 @@ export default function Home() {
         <>
             <section
                 id="hero"
-                className="h-[100vh] flex flex-col items-center justify-center relative gap-10"
+                className="h-[100vh] flex flex-col items-center relative gap-10 md:pt-[100px] pt-[50px] bg-base-100"
             >
-                <div className="flex flex-col items-center justify-center relative">
+                <div
+                    id="hero-text"
+                    className="flex flex-col items-center justify-center relative top-[100px]"
+                >
                     <StaggerText
                         className={`${titleFont.className} md:text-[3.35rem] text-[7vw] text-primary text-center`}
                         startDelay={0}
@@ -35,7 +38,9 @@ export default function Home() {
                         insightful analytics
                     </StaggerText>
                 </div>
-                <URLShortener />
+                <div className="relative top-[100px]">
+                    <URLShortener />
+                </div>
             </section>
 
             <section id="about" className="h-[100vh] w-[90vw] bg-blue-300">

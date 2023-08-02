@@ -18,6 +18,7 @@ export default function DropdownNavbar(props: any) {
 
     return (
         <motion.div
+            id="mobile-dropdown-navbar"
             className="flex flex-col fixed h-[100vh] w-[100%] bg-base-100 items-center justify-center z-20"
             initial="closed"
             animate={props.isOpen ? "open" : "closed"}

@@ -5,6 +5,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { useEffect, useState } from "react";
 import DropdownNavbar from "./DropdownNavbar";
 import { Turn as Hamburger } from "hamburger-react";
+import { ToastContainer } from "react-toastify";
 
 export default function Header() {
     const isScrollAtTop = useIsScrollAtTop();
@@ -123,6 +124,18 @@ export default function Header() {
                     </li>
                 </ul>
             </DropdownNavbar>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
         </>
     );
 }
