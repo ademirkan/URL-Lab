@@ -1,4 +1,3 @@
-import AnimatedRectangle from "@/components/AnimatedRecangle";
 import StaggerText from "@/components/StaggerText";
 import URLShortener from "@/components/URLShortener";
 import { Poppins, Roboto_Mono, Lexend, Roboto } from "next/font/google";
