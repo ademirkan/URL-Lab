@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 };
 
 import { Roboto_Mono } from "next/font/google";
-import DropdownNavbar from "@/components/DropdownNavbar";
-import { ToastContainer } from "react-toastify";
 const font = Roboto_Mono({ subsets: ["latin"], weight: "400" });
 
 export default function RootLayout({

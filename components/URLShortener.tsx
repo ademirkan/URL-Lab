@@ -64,8 +64,13 @@ const longURLSubmitButtonVariants = {
 };
 
 // Toast emitters
-const notifyLongUrlInvalid = (url: string) =>
-    toast.error(`${url.length < 30 ? url : "That"} is not a valid URL!`, {
+const notifyLongUrlInvalid = (url: string) => {
+    if (!url) return;
+    const msg =
+        url.length > 0
+            ? `${url.length < 30 ? url : "That"} is not a valid URL!`
+            : "URL is empty!";
+    toast.error(msg, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -75,6 +80,8 @@ const notifyLongUrlInvalid = (url: string) =>
         progress: undefined,
         theme: "dark",
     });
+};
+
 const notifyCustomUrlExtensionInvalid = (extension: string) => {
     toast.error(`${extension} is not a valid URL extension!`, {
         position: "top-right",
@@ -239,7 +246,7 @@ export default function URLShortener() {
                 </span>
             </div>
             <button
-                className="btn btn-primary w-[calc(100%-10px)] btn-sm self-center relative bottom-[-8px]"
+                className="btn btn-primary w-[calc(100%-8px)] btn-sm self-center relative bottom-[-9px]"
                 disabled={formState != "awaitingCustomURL"}
                 onClick={handleCustomURLExtensionSubmission}
             >

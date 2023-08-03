@@ -14,14 +14,33 @@ export default function Header() {
 
     const handleToggle = (toggled: boolean) => {
         document.body.style.overflow = toggled ? "hidden" : "auto";
+        setIsHamburgerToggled(toggled);
+    };
+
+    const handleSignUpClick = () => {
+        setIsHamburgerToggled(false);
+    };
+
+    const handleLoginClick = () => {
+        setIsHamburgerToggled(false);
+    };
+
+    const handleShortenClick = () => {
+        setIsHamburgerToggled(false);
+    };
+
+    const handleAboutClick = () => {
+        setIsHamburgerToggled(false);
+    };
+
+    const handleContributeClick = () => {
+        setIsHamburgerToggled(false);
     };
 
     useEffect(() => {
         if (isMobile) {
             return;
         }
-
-        setIsHamburgerToggled(false);
         handleToggle(false);
     }, [isMobile]);
 
@@ -41,17 +60,26 @@ export default function Header() {
                             className={`md:flex hidden flex-row relative top-[-1px] gap-4`}
                         >
                             <li>
-                                <a href="#nav-left" className="txtbtn btn-sm">
+                                <a
+                                    onClick={handleShortenClick}
+                                    className="txtbtn btn-sm cursor-pointer select-none"
+                                >
                                     Shorten
                                 </a>
                             </li>
                             <li>
-                                <a href="#nav-left" className="txtbtn btn-sm">
+                                <a
+                                    onClick={handleAboutClick}
+                                    className="txtbtn btn-sm cursor-pointer select-none"
+                                >
                                     About
                                 </a>
                             </li>
                             <li>
-                                <a href="#nav-left" className="txtbtn btn-sm">
+                                <a
+                                    onClick={handleContributeClick}
+                                    className="txtbtn btn-sm cursor-pointer select-none"
+                                >
                                     Contribute
                                 </a>
                             </li>
@@ -63,12 +91,18 @@ export default function Header() {
                             className="flex-row gap-2 md:flex hidden"
                         >
                             <li>
-                                <button className="btn btn-outline btn-sm">
+                                <button
+                                    className="btn btn-outline btn-sm"
+                                    onClick={handleLoginClick}
+                                >
                                     Log in
                                 </button>
                             </li>
                             <li>
-                                <button className="btn btn-primary btn-sm">
+                                <button
+                                    className="btn btn-primary btn-sm"
+                                    onClick={handleSignUpClick}
+                                >
                                     Sign up
                                 </button>
                             </li>
@@ -98,27 +132,45 @@ export default function Header() {
                     className={`flex flex-col items-center relative gap-4 w-[80%]`}
                 >
                     <li>
-                        <button className="btn btn-primary btn-sm">
+                        <button
+                            className="btn btn-primary btn-sm"
+                            onClick={handleSignUpClick}
+                        >
                             Sign up
                         </button>
                     </li>
                     <li>
-                        <button className="btn btn-outline btn-sm">
+                        <button
+                            className="btn btn-outline btn-sm"
+                            onClick={handleLoginClick}
+                        >
                             Log in
                         </button>
                     </li>
                     <li>
-                        <a href="#nav-left" className="txtbtn btn-sm">
+                        <a
+                            href="#nav-left"
+                            className="txtbtn btn-sm"
+                            onClick={handleShortenClick}
+                        >
                             Shorten
                         </a>
                     </li>
                     <li>
-                        <a href="#nav-left" className="txtbtn btn-sm">
+                        <a
+                            href="#nav-left"
+                            className="txtbtn btn-sm"
+                            onClick={handleAboutClick}
+                        >
                             About
                         </a>
                     </li>
                     <li>
-                        <a href="#nav-left" className="txtbtn btn-sm">
+                        <a
+                            href="#nav-left"
+                            className="txtbtn btn-sm"
+                            onClick={handleContributeClick}
+                        >
                             Contribute
                         </a>
                     </li>
