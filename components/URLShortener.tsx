@@ -154,26 +154,33 @@ export default function URLShortener() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 id: customUrlExtensionRef.current!.value,
-                longUrl: longUrlRef.current!.value,
+                url: longUrlRef.current!.value,
             }),
         };
-        fetch("https://urllab.co/create-url", requestOptions)
+        fetch("https://www.urllab.co/create-url", requestOptions)
             .then((response) => {
+                console.log(1);
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
+                console.log(2);
                 return response.json();
             })
             .then((data) => {
+                console.log(3);
                 if (data.id && data.url) {
+                    console.log(4);
                     toastSuccess(`${data.id}!`);
                 } else if (data.error) {
+                    console.log(5);
                     toastError(data.error);
                 } else {
+                    console.log(6);
                     toastError("An unknown error occurred!");
                 }
             })
             .catch((error) => {
+                console.log(7);
                 toastError(`Fetch error: ${error.message}`);
             });
     };
