@@ -63,13 +63,7 @@ const longURLSubmitButtonVariants = {
     },
 };
 
-// Toast emitters
-const notifyLongUrlInvalid = (url: string) => {
-    if (!url) return;
-    const msg =
-        url.length > 0
-            ? `${url.length < 30 ? url : "That"} is not a valid URL!`
-            : "URL is empty!";
+const toastError = (msg: string) => {
     toast.error(msg, {
         position: "top-right",
         autoClose: 3000,
@@ -82,8 +76,8 @@ const notifyLongUrlInvalid = (url: string) => {
     });
 };
 
-const notifyCustomUrlExtensionInvalid = (extension: string) => {
-    toast.error(`${extension} is not a valid URL extension!`, {
+const toastSuccess = (msg: string) => {
+    toast.success(msg, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -113,7 +107,12 @@ export default function URLShortener() {
             });
         } else {
             // handle invalid url
-            notifyLongUrlInvalid(longUrlRef.current!.value);
+            const url = longUrlRef.current!.value;
+            const msg =
+                url.length > 0
+                    ? `${url.length < 30 ? url : "That"} is not a valid URL!`
+                    : "URL is empty!";
+            toastError(msg);
         }
     };
 
@@ -126,17 +125,57 @@ export default function URLShortener() {
             )
         ) {
             // submit
-            console.log(
-                "SUBMIT",
-                longUrlRef.current!.value,
-                customUrlExtensionRef.current!.value
-            );
+            handleSubmit();
         } else {
             // handle invalid url
-            notifyCustomUrlExtensionInvalid(
+            const msg = `${
                 customUrlExtensionRef.current!.value
-            );
+            } is not a valid URL extension!`;
+            toastError(msg);
         }
+    };
+
+    const handleSubmit = () => {
+        // submit post request
+        // if successful, toast success
+        // if unsuccessful, toast error
+
+        // if custom url extension is taken, toast error
+        // if custom url extension is invalid, toast error
+        // if long url is invalid, toast error
+        // if long url is empty, toast error
+        // if custom url extension is empty, toast error
+        // if custom url extension is not provided, generate random
+        // if long url is not provided, toast error
+        // if long url is not valid, toast error
+
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id: customUrlExtensionRef.current!.value,
+                longUrl: longUrlRef.current!.value,
+            }),
+        };
+        fetch("https://urllab.co/create-url", requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data.id && data.url) {
+                    toastSuccess(`${data.id}!`);
+                } else if (data.error) {
+                    toastError(data.error);
+                } else {
+                    toastError("An unknown error occurred!");
+                }
+            })
+            .catch((error) => {
+                toastError(`Fetch error: ${error.message}`);
+            });
     };
 
     useEffect(() => {
