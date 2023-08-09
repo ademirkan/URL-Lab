@@ -89,6 +89,44 @@ const toastSuccess = (msg: string) => {
     });
 };
 
+const toastPromise = (promise: Promise<any>) => {
+    toast.promise(
+        promise,
+        {
+            pending: {
+                render() {
+                    return "loading...";
+                },
+                icon: false,
+            },
+            success: {
+                render({ data }) {
+                    console.log(data);
+                    return `urllab.co/${data.id} has been copied to your clipboard!`;
+                },
+                // other options
+                icon: "🟢",
+            },
+            error: {
+                render({ data }) {
+                    // When the promise reject, data will contains the error
+                    return "error";
+                },
+            },
+        },
+        {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        }
+    );
+};
+
 export default function URLShortener() {
     const [formState, setFormState] = useState("initialAwaitingLongURL");
     const longUrlRef = useRef<HTMLInputElement>(null);
@@ -157,32 +195,11 @@ export default function URLShortener() {
                 url: longUrlRef.current!.value,
             }),
         };
-        fetch("https://www.urllab.co/create-url", requestOptions)
-            .then((response) => {
-                console.log(1);
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                console.log(2);
-                return response.json();
-            })
-            .then((data) => {
-                console.log(3);
-                if (data.id && data.url) {
-                    console.log(4);
-                    toastSuccess(`${data.id}!`);
-                } else if (data.error) {
-                    console.log(5);
-                    toastError(data.error);
-                } else {
-                    console.log(6);
-                    toastError("An unknown error occurred!");
-                }
-            })
-            .catch((error) => {
-                console.log(7);
-                toastError(`Fetch error: ${error.message}`);
-            });
+        toastPromise(
+            fetch("https://www.urllab.co/create-url", requestOptions).then(
+                (response) => response.json()
+            )
+        );
     };
 
     useEffect(() => {

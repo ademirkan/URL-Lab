@@ -45,7 +45,7 @@ export default function Home() {
 
             <section
                 id="about"
-                className="flex flex-col h-[100vh] w-[100vw] justify-center"
+                className="flex flex-col h-[100vh] w-[100vw] justify-center items-center"
             >
                 <div className="relative w-[100%]">
                     <UnderConstructionMarquee />

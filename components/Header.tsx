@@ -39,7 +39,7 @@ export default function Header() {
         router.push("#about");
     };
 
-    const handleWhitepaperClick = () => {
+    const handleTrackClick = () => {
         setIsHamburgerToggled(false);
         router.push("#about");
     };
@@ -76,18 +76,18 @@ export default function Header() {
                             </li>
                             <li>
                                 <a
-                                    onClick={handleAboutClick}
+                                    onClick={handleTrackClick}
                                     className="txtbtn btn-sm cursor-pointer select-none"
                                 >
-                                    About
+                                    Track
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    onClick={handleWhitepaperClick}
+                                    onClick={handleAboutClick}
                                     className="txtbtn btn-sm cursor-pointer select-none"
                                 >
-                                    Whitepaper
+                                    About
                                 </a>
                             </li>
                         </ul>
@@ -176,9 +176,9 @@ export default function Header() {
                         <a
                             href="#nav-left"
                             className="txtbtn btn-sm"
-                            onClick={handleWhitepaperClick}
+                            onClick={handleTrackClick}
                         >
-                            Whitepaper
+                            Track
                         </a>
                     </li>
                 </ul>
