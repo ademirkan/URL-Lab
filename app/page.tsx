@@ -1,5 +1,6 @@
 import StaggerText from "@/components/StaggerText";
 import URLShortener from "@/components/URLShortener";
+import UnderConstructionMarquee from "@/components/UnderConstructionMarquee";
 import { Poppins, Roboto_Mono, Lexend, Roboto } from "next/font/google";
 
 const titleFont = Poppins({ subsets: ["latin"], weight: "700" });
@@ -10,7 +11,7 @@ export default function Home() {
         <>
             <section
                 id="hero"
-                className="h-[100vh] flex flex-col items-center relative gap-10 md:pt-[100px] pt-[50px] bg-base-100"
+                className="h-[100vh] flex flex-col items-center relative gap-10 md:pt-[200px] pt-[100px] bg-base-100"
             >
                 <div
                     id="hero-text"
@@ -42,12 +43,13 @@ export default function Home() {
                 </div>
             </section>
 
-            <section id="about" className="h-[100vh] w-[90vw] bg-blue-300">
-                about
-            </section>
-
-            <section id="features" className="h-[100vh] w-[90vw] bg-red-300">
-                features
+            <section
+                id="about"
+                className="flex flex-col h-[100vh] w-[100vw] justify-center"
+            >
+                <div className="relative w-[100%]">
+                    <UnderConstructionMarquee />
+                </div>
             </section>
         </>
     );

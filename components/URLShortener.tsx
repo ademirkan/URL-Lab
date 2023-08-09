@@ -281,6 +281,15 @@ export default function URLShortener() {
                         if (e.key === " ") {
                             e.preventDefault();
                         }
+                        if (
+                            customUrlExtensionRef.current!.value === "" &&
+                            e.key == "Backspace"
+                        ) {
+                            // focus on long url input after 10ms
+                            setTimeout(() => {
+                                longUrlRef.current!.focus();
+                            }, 0);
+                        }
                     }}
                     ref={customUrlExtensionRef}
                     type="text"

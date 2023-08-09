@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import DropdownNavbar from "./DropdownNavbar";
 import { Turn as Hamburger } from "hamburger-react";
 import { ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+    const router = useRouter();
     const isScrollAtTop = useIsScrollAtTop();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const [isHamburgerToggled, setIsHamburgerToggled] = useState(false);
@@ -19,22 +21,27 @@ export default function Header() {
 
     const handleSignUpClick = () => {
         setIsHamburgerToggled(false);
+        router.push("/not-ready");
     };
 
     const handleLoginClick = () => {
         setIsHamburgerToggled(false);
+        router.push("/not-ready");
     };
 
     const handleShortenClick = () => {
         setIsHamburgerToggled(false);
+        router.push("/#hero");
     };
 
     const handleAboutClick = () => {
         setIsHamburgerToggled(false);
+        router.push("#about");
     };
 
-    const handleContributeClick = () => {
+    const handleWhitepaperClick = () => {
         setIsHamburgerToggled(false);
+        router.push("#about");
     };
 
     useEffect(() => {
@@ -77,10 +84,10 @@ export default function Header() {
                             </li>
                             <li>
                                 <a
-                                    onClick={handleContributeClick}
+                                    onClick={handleWhitepaperClick}
                                     className="txtbtn btn-sm cursor-pointer select-none"
                                 >
-                                    Contribute
+                                    Whitepaper
                                 </a>
                             </li>
                         </ul>
@@ -169,9 +176,9 @@ export default function Header() {
                         <a
                             href="#nav-left"
                             className="txtbtn btn-sm"
-                            onClick={handleContributeClick}
+                            onClick={handleWhitepaperClick}
                         >
-                            Contribute
+                            Whitepaper
                         </a>
                     </li>
                 </ul>
