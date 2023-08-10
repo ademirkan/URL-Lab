@@ -101,17 +101,23 @@ const toastPromise = (promise: Promise<any>) => {
             },
             success: {
                 render({ data }) {
-                    console.log(data);
-                    return `urllab.co/${data.id} has been copied to your clipboard!`;
+                    navigator.clipboard.writeText(`urllab.co/${data.id}`);
+                    return (
+                        <>
+                            <b>urllab.co/{data.id}</b> has been copied to your
+                            clipboard
+                        </>
+                    );
                 },
                 // other options
-                icon: "🟢",
+                icon: "📋",
             },
             error: {
                 render({ data }) {
                     // When the promise reject, data will contains the error
-                    return "error";
+                    return `Error: ${data}`;
                 },
+                icon: "😞",
             },
         },
         {
@@ -129,6 +135,7 @@ const toastPromise = (promise: Promise<any>) => {
 
 export default function URLShortener() {
     const [formState, setFormState] = useState("initialAwaitingLongURL");
+    const [isPending, setIsPending] = useState(false);
     const longUrlRef = useRef<HTMLInputElement>(null);
     const customUrlExtensionRef = useRef<HTMLInputElement>(null);
 
@@ -173,20 +180,7 @@ export default function URLShortener() {
         }
     };
 
-    const handleSubmit = () => {
-        // submit post request
-        // if successful, toast success
-        // if unsuccessful, toast error
-
-        // if custom url extension is taken, toast error
-        // if custom url extension is invalid, toast error
-        // if long url is invalid, toast error
-        // if long url is empty, toast error
-        // if custom url extension is empty, toast error
-        // if custom url extension is not provided, generate random
-        // if long url is not provided, toast error
-        // if long url is not valid, toast error
-
+    async function handleSubmit() {
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -195,12 +189,35 @@ export default function URLShortener() {
                 url: longUrlRef.current!.value,
             }),
         };
+        setIsPending(true);
         toastPromise(
-            fetch("https://www.urllab.co/create-url", requestOptions).then(
-                (response) => response.json()
-            )
+            new Promise((resolve, reject) => {
+                fetch("https://www.urllab.co/create-url", requestOptions)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setIsPending(false);
+                        if (data.error) {
+                            reject(data.error);
+                        } else {
+                            // empty inputs
+                            longUrlRef.current!.value = "";
+                            customUrlExtensionRef.current!.value = "";
+                            setFormState("awaitingLongURL");
+
+                            // focus on long url input after 10ms
+                            setTimeout(() => {
+                                longUrlRef.current!.focus();
+                                resolve(data);
+                            }, 0);
+                        }
+                    })
+                    .catch((error) => {
+                        setIsPending(false);
+                        reject(error);
+                    });
+            })
         );
-    };
+    }
 
     useEffect(() => {
         if (formState === "awaitingCustomURL") {
@@ -251,8 +268,9 @@ export default function URLShortener() {
 
                 <motion.button
                     disabled={
-                        formState != "initialAwaitingLongURL" &&
-                        formState != "awaitingLongURL"
+                        (formState != "initialAwaitingLongURL" &&
+                            formState != "awaitingLongURL") ||
+                        isPending
                     }
                     variants={longURLSubmitButtonVariants}
                     animate={
@@ -283,7 +301,7 @@ export default function URLShortener() {
                     urllab.co/
                 </span>
                 <input
-                    disabled={formState != "awaitingCustomURL"}
+                    disabled={formState != "awaitingCustomURL" || isPending}
                     className={`${formFont.className} h-[100%] py-4 px-1 flex-grow min-w-[20px] bg-transparent outline-none text-[0.8rem] text-primary placeholder-secondary `}
                     placeholder={"DyQRt"}
                     onPaste={(e) => {
@@ -319,7 +337,7 @@ export default function URLShortener() {
             </div>
             <button
                 className="btn btn-primary w-[calc(100%-8px)] btn-sm self-center relative bottom-[-9px]"
-                disabled={formState != "awaitingCustomURL"}
+                disabled={formState != "awaitingCustomURL" || isPending}
                 onClick={handleCustomURLExtensionSubmission}
             >
                 Submit
