@@ -315,15 +315,18 @@ export default function URLShortener() {
                             handleCustomURLExtensionSubmission();
                         if (e.key === " ") {
                             e.preventDefault();
+                            return;
                         }
                         if (
-                            customUrlExtensionRef.current!.value === "" &&
-                            e.key == "Backspace"
+                            (customUrlExtensionRef.current!.value === "" &&
+                                e.key == "Backspace") ||
+                            e.key == "Escape"
                         ) {
                             // focus on long url input after 10ms
                             setTimeout(() => {
                                 longUrlRef.current!.focus();
                             }, 0);
+                            return;
                         }
                     }}
                     ref={customUrlExtensionRef}

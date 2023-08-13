@@ -53,7 +53,12 @@ export default function Header() {
 
     return (
         <>
-            <header className="fixed flex flex-row w-[100%] h-20 items-center gap-12 z-50">
+            <header
+                className={`fixed flex flex-row w-[100%] h-20 items-center gap-12 z-50 box-content ${
+                    !isScrollAtTop &&
+                    "border-b-[1px] border-secondary border-opacity-25"
+                }`}
+            >
                 <nav className="flex flex-row items-center flex-grow justify-between px-[5%]">
                     <Logo />
                     <div

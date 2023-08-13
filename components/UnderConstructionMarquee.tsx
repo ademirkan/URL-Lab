@@ -8,7 +8,7 @@ export default function UnderConstructionMarquee() {
     return (
         <Marquee
             style={{ width: "100%" }}
-            className={`${marqueeFont.className} bg-primary text-base-100 text-3xl z-10 rounded-xl border-x-4 border-primary`}
+            className={`${marqueeFont.className} bg-primary text-base-100 text-3xl z-10 border-x-4 border-primary`}
             autoFill
             gradient
             gradientColor={hexToRgb("#ffffff")}
