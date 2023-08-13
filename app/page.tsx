@@ -140,7 +140,7 @@ export default function Home() {
                             staggerHeight={5}
                             childrenClassName="inline-block mx-[2px]"
                         >
-                            We'll send you the steps to create a free beta
+                            We&apos;ll send you the steps to create a free beta
                             account.
                         </StaggerText>
 
