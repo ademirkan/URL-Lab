@@ -50,9 +50,9 @@ export default function Home() {
                 </div>
             </section>
 
-            <div className="relative w-[calc(100vw-5px)] overflow-hidden my-32">
+            {/* <div className="relative w-[calc(100vw-5px)] overflow-hidden my-32">
                 <UnderConstructionMarquee />
-            </div>
+            </div> */}
 
             <section
                 id="about"
@@ -144,11 +144,16 @@ export default function Home() {
                             account.
                         </StaggerText>
 
-                        <FadeIn initialOffset={-50} startDelay={0.5} axis="x">
+                        <FadeIn
+                            initialOffset={-5}
+                            startDelay={0.5}
+                            axis="x"
+                            duration={10}
+                        >
                             <FontAwesomeIcon
                                 className="!box-border m-4 text-info"
                                 icon={faEnvelopeCircleCheck}
-                                size="2xl"
+                                size="xl"
                             />
                         </FadeIn>
                     </RenderOnceInView>
