@@ -36,7 +36,6 @@ export default function FadeIn(props: {
     container.show.transition["opacity"] = props.duration || 0.25;
     container.show.transition[`${props.axis || "y"}`] = props.duration || 0.25;
 
-    console.log(container);
     return (
         <motion.div variants={container} initial="hidden" animate="show">
             {props.children}

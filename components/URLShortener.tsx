@@ -17,18 +17,18 @@ const validateURL = (url: string) => {
 
 // Animation states
 const containerVariants = {
-    hidden: { opacity: 0, y: 10, height: "50px" },
+    hidden: { opacity: 0, y: 10, height: "47px" },
     initialAwaitingLongURL: {
         opacity: 1,
         y: 0,
-        height: "50px",
+        height: "47px",
         transition: {
             delay: 1.75,
             duration: 0.5,
         },
     },
     awaitingCustomURL: {
-        height: "140px",
+        height: "137px",
         opacity: 1,
         y: 0,
         transition: {
@@ -38,7 +38,7 @@ const containerVariants = {
     awaitingLongURL: {
         opacity: 1,
         y: 0,
-        height: "50px",
+        height: "47px",
         transition: {
             duration: 0.25,
         },
@@ -233,11 +233,11 @@ export default function URLShortener() {
             variants={containerVariants}
             initial={"hidden"}
             animate={formState}
-            className="overflow-hidden relative sm:w-[400px] w-[290px] bg-transparent border-primary border-[2px] rounded-xl flex flex-col align-top"
+            className="overflow-hidden relative sm:w-[400px] w-[290px] bg-transparent border-primary border-[1px] rounded-xl flex flex-col align-top"
         >
             <div
                 id="long-url-row"
-                className="w-[100%] h-[45px] flex flex-row relative"
+                className="w-[100%] h-[45px] flex flex-row relative "
             >
                 <div className="flex w-12 items-center justify-center">
                     <FontAwesomeIcon

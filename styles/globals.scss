@@ -9,6 +9,20 @@
     text-transform: uppercase;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-button {
+    background: transparent;
+}
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #eee;
+    height: 0px;
+}
+
 // .btn {
 //     text-transform: none;
 // }

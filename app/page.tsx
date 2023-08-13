@@ -5,6 +5,8 @@ import UnderConstructionMarquee from "@/components/UnderConstructionMarquee";
 import { Poppins, Roboto_Mono, Lexend, Roboto } from "next/font/google";
 import RenderOnceInView from "@/components/RenderOnceInView";
 import FadeIn from "@/components/FadeIn";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelopeCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 const titleFont = Poppins({ subsets: ["latin"], weight: "700" });
 const subtitleFont = Poppins({ subsets: ["latin"], weight: "500" });
@@ -48,9 +50,13 @@ export default function Home() {
                 </div>
             </section>
 
+            <div className="relative w-[calc(100vw-5px)] overflow-hidden my-32">
+                <UnderConstructionMarquee />
+            </div>
+
             <section
                 id="about"
-                className="flex flex-col w-[90vw] items-center relative pt-64 gap-32"
+                className="flex flex-col w-[calc(100vw-5px)] items-center relative pb-44 gap-16"
             >
                 <div
                     id="bullet-1"
@@ -70,7 +76,7 @@ export default function Home() {
                         <StaggerText
                             className={`${titleFont.className} text-primary text-xl`}
                             startDelay={0}
-                            staggerDelay={0.03}
+                            staggerDelay={0.02}
                             staggerHeight={5}
                             childrenClassName="inline-block mx-[3px]"
                         >
@@ -79,7 +85,7 @@ export default function Home() {
 
                         <StaggerText
                             className={`${subtitleFont.className} text-secondary text-sm text-center`}
-                            startDelay={0.5}
+                            startDelay={0.2}
                             staggerDelay={0.03}
                             staggerHeight={5}
                             childrenClassName="inline-block mx-[2px]"
@@ -87,7 +93,7 @@ export default function Home() {
                             Get early access to the beta
                         </StaggerText>
 
-                        <FadeIn initialOffset={20} startDelay={1}>
+                        <FadeIn initialOffset={20} startDelay={0.5}>
                             <button className="btn btn-info mt-8 w-[12rem]">
                                 Waitlist
                             </button>
@@ -96,13 +102,14 @@ export default function Home() {
                 </div>
 
                 <ScrollArrow
-                    maxHeight={400}
+                    maxHeight={250}
                     pxBufferUntilAnimation={100}
                     hasTip
+                    sticky
                 ></ScrollArrow>
 
                 <div
-                    id="bullet-2"
+                    id="bullet-3"
                     className="flex flex-col items-center justify-center h-[200px]"
                 >
                     <RenderOnceInView
@@ -123,12 +130,65 @@ export default function Home() {
                             staggerHeight={5}
                             childrenClassName="inline-block mx-[3px]"
                         >
+                            Check your email
+                        </StaggerText>
+
+                        <StaggerText
+                            className={`${subtitleFont.className} text-secondary text-sm text-center`}
+                            startDelay={0.2}
+                            staggerDelay={0.03}
+                            staggerHeight={5}
+                            childrenClassName="inline-block mx-[2px]"
+                        >
+                            We'll send you the steps to create a free beta
+                            account.
+                        </StaggerText>
+
+                        <FadeIn initialOffset={-50} startDelay={0.5} axis="x">
+                            <FontAwesomeIcon
+                                className="!box-border m-4 text-info"
+                                icon={faEnvelopeCircleCheck}
+                                size="2xl"
+                            />
+                        </FadeIn>
+                    </RenderOnceInView>
+                </div>
+
+                <ScrollArrow
+                    maxHeight={250}
+                    pxBufferUntilAnimation={100}
+                    hasTip
+                    sticky
+                ></ScrollArrow>
+
+                <div
+                    id="bullet-3"
+                    className="flex flex-col items-center justify-center h-[200px]"
+                >
+                    <RenderOnceInView
+                        once={true}
+                        margins="0px 0px -200px 0px"
+                        className="flex flex-col items-center justify-center w-[300px]"
+                        placeholderClassName="h-[200px]"
+                    >
+                        <p
+                            className={`${titleFont.className} text-primary text-4xl m-4`}
+                        >
+                            3.
+                        </p>
+                        <StaggerText
+                            className={`${titleFont.className} text-primary text-xl`}
+                            startDelay={0}
+                            staggerDelay={0.03}
+                            staggerHeight={5}
+                            childrenClassName="inline-block mx-[3px]"
+                        >
                             Access premium features
                         </StaggerText>
 
                         <StaggerText
                             className={`${subtitleFont.className} text-secondary text-sm text-center`}
-                            startDelay={0.5}
+                            startDelay={0.2}
                             staggerDelay={0.03}
                             staggerHeight={5}
                             childrenClassName="inline-block mx-[2px]"
@@ -136,18 +196,17 @@ export default function Home() {
                             Track clickrates, userbase demographics, and more!
                         </StaggerText>
 
-                        <FadeIn initialOffset={20} startDelay={1.25}>
-                            <button className="btn btn-outline mt-8 w-[12rem]">
+                        <FadeIn initialOffset={20} startDelay={0.5}>
+                            <button className="btn btn-outline btn-info mt-8 w-[12rem]">
                                 Login
                             </button>
                         </FadeIn>
                     </RenderOnceInView>
                 </div>
-
-                <div className="relative w-[100vw] rounded-b-2xl overflow-hidden">
-                    <UnderConstructionMarquee />
-                </div>
             </section>
+            <div className="relative w-[calc(100vw-5px)] overflow-hidden">
+                <UnderConstructionMarquee />
+            </div>
         </>
     );
 }

@@ -9,11 +9,14 @@ interface IScrollArrowProps {
     maxHeight: number;
     pxBufferUntilAnimation: number;
     hasTip: boolean;
+    sticky?: boolean;
 }
 export default function ScrollArrow(props: IScrollArrowProps) {
     const [arrowHeight, setArrowHeight] = useState(
         props.hasTip ? TRIANGLE_HEIGHT : 0
     ); // Initialize the arrowHeight as a state
+
+    const [isFinished, setIsFinished] = useState(false);
 
     const scrollY = useScrollPosition(60 /*fps*/);
     const containerRef = useRef(null);
@@ -22,6 +25,9 @@ export default function ScrollArrow(props: IScrollArrowProps) {
 
     useEffect(() => {
         // This effect recalculates arrowHeight when either the scrollY or windowHeight changes
+        if (isFinished) {
+            return;
+        }
         const containerYPosition =
             containerRef.current?.getBoundingClientRect().top;
         const newArrowHeight = Math.max(
@@ -32,10 +38,13 @@ export default function ScrollArrow(props: IScrollArrowProps) {
             )
         );
         setArrowHeight(newArrowHeight); // Update the state to trigger a re-render
+        if (newArrowHeight === props.maxHeight && props.sticky) {
+            setIsFinished(true);
+        }
     }, [scrollY, windowHeight]); // Effect depends on scrollY and windowHeight
 
     return (
-        <div className={`h-[${props.maxHeight}px] relative`}>
+        <div style={{ height: props.maxHeight + "px" }} className={`relative `}>
             <motion.div
                 initial={{ height: props.hasTip ? TRIANGLE_HEIGHT : 0 }}
                 animate={{ height: `${arrowHeight}px` }}
