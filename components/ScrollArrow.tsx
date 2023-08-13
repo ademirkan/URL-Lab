@@ -34,7 +34,9 @@ export default function ScrollArrow(props: IScrollArrowProps) {
             props.hasTip ? TRIANGLE_HEIGHT : 0,
             Math.min(
                 props.maxHeight,
-                windowHeight - containerYPosition - props.pxBufferUntilAnimation
+                windowHeight -
+                    containerYPosition! -
+                    props.pxBufferUntilAnimation
             )
         );
         setArrowHeight(newArrowHeight); // Update the state to trigger a re-render
