@@ -56,8 +56,17 @@ export default function Home() {
 
             <section
                 id="about"
-                className="flex flex-col w-[calc(100vw-5px)] items-center relative pb-44 gap-16"
+                className="flex flex-col w-[calc(100vw-5px)] items-center relative pb-44 gap-16 pt-16"
             >
+                <RenderOnceInView once>
+                    <FadeIn startDelay={0.25}>
+                        <h1
+                            className={`${titleFont.className} text-4xl text-primary my-4 border-b-[5px] select-none`}
+                        >
+                            HOW TO GET STARTED
+                        </h1>
+                    </FadeIn>
+                </RenderOnceInView>
                 <div
                     id="bullet-1"
                     className="flex flex-col items-center justify-center h-[200px]"
