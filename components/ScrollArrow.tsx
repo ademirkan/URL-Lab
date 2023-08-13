@@ -19,7 +19,7 @@ export default function ScrollArrow(props: IScrollArrowProps) {
     const [isFinished, setIsFinished] = useState(false);
 
     const scrollY = useScrollPosition(60 /*fps*/);
-    const containerRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const windowHeight = useWindowHeight();
 
