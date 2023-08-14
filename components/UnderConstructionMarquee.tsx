@@ -11,7 +11,7 @@ export default function UnderConstructionMarquee() {
             autoFill
             speed={75}
         >
-            <div className="md:py-10 py-8 select-none">WORK IN PROGRESS</div>
+            <div className="md:py-4 py-4 select-none">WORK IN PROGRESS</div>
             <div className="relative h-[100%] flex items-center justify-center select-none">
                 <div className={`${titleFont.className} px-4`}>●</div>
             </div>
