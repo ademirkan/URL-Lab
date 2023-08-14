@@ -41,7 +41,7 @@ module.exports = {
                 waifudex: {
                     primary: "#ffffff",
                     secondary: "#888888",
-                    accent: "#c4b5fd",
+                    accent: "#9ec5ff",
                     neutral: "#2a323c",
                     "base-100": "#131313",
                     info: "#93c5fd",

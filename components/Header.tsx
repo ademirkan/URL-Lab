@@ -20,28 +20,33 @@ export default function Header() {
     };
 
     const handleSignUpClick = () => {
+        handleToggle(false);
         setIsHamburgerToggled(false);
         router.push("/not-ready");
     };
 
     const handleLoginClick = () => {
+        handleToggle(false);
         setIsHamburgerToggled(false);
         router.push("/not-ready");
     };
 
     const handleShortenClick = () => {
+        handleToggle(false);
         setIsHamburgerToggled(false);
         router.push("/#hero");
     };
 
     const handleAboutClick = () => {
+        handleToggle(false);
         setIsHamburgerToggled(false);
-        router.push("#about");
+        router.push("/#about");
     };
 
     const handleTrackClick = () => {
+        handleToggle(false);
         setIsHamburgerToggled(false);
-        router.push("#about");
+        router.push("/#about");
     };
 
     useEffect(() => {

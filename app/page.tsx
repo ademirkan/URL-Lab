@@ -50,20 +50,20 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* <div className="relative w-[calc(100vw-5px)] overflow-hidden my-32">
+            <div className="relative w-[calc(100vw-5px)] overflow-hidden mt-16">
                 <UnderConstructionMarquee />
-            </div> */}
+            </div>
 
             <section
                 id="about"
-                className="flex flex-col w-[calc(100vw-5px)] items-center relative pb-44 gap-16 pt-16"
+                className="flex flex-col w-[calc(100vw-5px)] items-center relative pb-44 gap-16 pt-16 bg-noise bg-black"
             >
                 <RenderOnceInView once>
-                    <FadeIn startDelay={0.25}>
+                    <FadeIn startDelay={0}>
                         <h1
-                            className={`${titleFont.className} text-4xl text-primary my-4 border-b-[5px] select-none`}
+                            className={`${titleFont.className} md:text-3xl text-2xl text-base-100 bg-primary my-4 select-none rounded-xl p-3 hover:scale-105 transition-all`}
                         >
-                            HOW TO GET STARTED
+                            GET STARTED
                         </h1>
                     </FadeIn>
                 </RenderOnceInView>
@@ -103,7 +103,7 @@ export default function Home() {
                         </StaggerText>
 
                         <FadeIn initialOffset={20} startDelay={0.5}>
-                            <button className="btn btn-info mt-8 w-[12rem]">
+                            <button className="btn btn-accent mt-8 w-[12rem]">
                                 Waitlist
                             </button>
                         </FadeIn>
@@ -160,7 +160,7 @@ export default function Home() {
                             duration={10}
                         >
                             <FontAwesomeIcon
-                                className="!box-border m-4 text-info"
+                                className="!box-border m-4 text-accent"
                                 icon={faEnvelopeCircleCheck}
                                 size="xl"
                             />
@@ -211,16 +211,17 @@ export default function Home() {
                         </StaggerText>
 
                         <FadeIn initialOffset={20} startDelay={0.5}>
-                            <button className="btn btn-outline btn-info mt-8 w-[12rem]">
+                            <button className="btn btn-outline btn-accent mt-8 w-[12rem]">
                                 Login
                             </button>
                         </FadeIn>
                     </RenderOnceInView>
                 </div>
             </section>
-            <div className="relative w-[calc(100vw-5px)] overflow-hidden">
+
+            {/* <div className="relative w-[calc(100vw-5px)] overflow-hidden">
                 <UnderConstructionMarquee />
-            </div>
+            </div> */}
         </>
     );
 }

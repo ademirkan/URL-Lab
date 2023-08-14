@@ -1,6 +1,5 @@
 import Marquee from "react-fast-marquee";
 import { Poppins, Roboto_Mono, Lexend, Roboto } from "next/font/google";
-import hexToRgb from "@/ts/hexToRgb";
 
 const marqueeFont = Lexend({ subsets: ["latin"], weight: "700" });
 const titleFont = Poppins({ subsets: ["latin"], weight: "700" });
@@ -8,7 +7,7 @@ export default function UnderConstructionMarquee() {
     return (
         <Marquee
             style={{ width: "100%" }}
-            className={`${marqueeFont.className} text-primary md:text-6xl text-3xl z-10 box-border bg-black bg-opacity-20 `}
+            className={`${marqueeFont.className} text-primary md:text-6xl text-3xl z-10 box-border bg-black`}
             autoFill
             speed={75}
         >

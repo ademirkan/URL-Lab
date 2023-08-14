@@ -59,7 +59,7 @@ body {
 }
 
 header {
-    background-color: rgba(18, 18, 18, 0.75);
+    background-color: rgba(19, 19, 19, 0.75);
     backdrop-filter: saturate(180%) blur(5px);
 }
 
@@ -77,4 +77,9 @@ html {
 
 .text-outline {
     -webkit-text-stroke: 2px hsl(var(--p));
+}
+
+.bg-noise {
+    // background-image: url(http://noisepng.com/200-40-12.png);
+    background-image: url(/noise-light.png);
 }
