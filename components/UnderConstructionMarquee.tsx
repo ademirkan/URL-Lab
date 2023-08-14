@@ -7,11 +7,11 @@ export default function UnderConstructionMarquee() {
     return (
         <Marquee
             style={{ width: "100%" }}
-            className={`${marqueeFont.className} text-primary md:text-6xl text-3xl z-10 box-border bg-black`}
+            className={`${marqueeFont.className} text-base-100 md:text-6xl text-3xl z-10 box-border bg-primary`}
             autoFill
             speed={75}
         >
-            <div className="md:py-16 py-8 select-none">WORK IN PROGRESS</div>
+            <div className="md:py-10 py-8 select-none">WORK IN PROGRESS</div>
             <div className="relative h-[100%] flex items-center justify-center select-none">
                 <div className={`${titleFont.className} px-4`}>●</div>
             </div>

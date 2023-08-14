@@ -56,14 +56,15 @@ export default function Home() {
 
             <section
                 id="about"
-                className="flex flex-col w-[calc(100vw-5px)] items-center relative pb-44 gap-16 pt-16 bg-noise bg-black"
+                className="flex flex-col w-[calc(100vw-5px)] items-center relative pb-44 gap-12 pt-16 bg-base-100 bg-opacity-60"
             >
+                <div className="absolute top-0 bg-noise bg-black h-[100%] w-[100%] -z-10"></div>
                 <RenderOnceInView once>
                     <FadeIn startDelay={0}>
                         <h1
-                            className={`${titleFont.className} md:text-3xl text-2xl text-base-100 bg-primary my-4 select-none rounded-xl p-3 hover:scale-105 transition-all`}
+                            className={`${titleFont.className} md:text-3xl text-2xl text-base-100 bg-primary mt-32 select-none rounded-xl p-3 hover:scale-105 transition-all`}
                         >
-                            GET STARTED
+                            GET EARLY ACCESS
                         </h1>
                     </FadeIn>
                 </RenderOnceInView>
@@ -111,7 +112,7 @@ export default function Home() {
                 </div>
 
                 <ScrollArrow
-                    maxHeight={250}
+                    maxHeight={150}
                     pxBufferUntilAnimation={100}
                     hasTip
                     sticky
@@ -149,8 +150,7 @@ export default function Home() {
                             staggerHeight={5}
                             childrenClassName="inline-block mx-[2px]"
                         >
-                            We&apos;ll send you the steps to create a free beta
-                            account.
+                            We&apos;ll help you set up a free beta account
                         </StaggerText>
 
                         <FadeIn
@@ -169,7 +169,7 @@ export default function Home() {
                 </div>
 
                 <ScrollArrow
-                    maxHeight={250}
+                    maxHeight={150}
                     pxBufferUntilAnimation={100}
                     hasTip
                     sticky
