@@ -112,7 +112,7 @@ export default function Home() {
                 </div>
 
                 <ScrollArrow
-                    maxHeight={150}
+                    maxHeight={200}
                     pxBufferUntilAnimation={100}
                     hasTip
                     sticky
@@ -169,7 +169,7 @@ export default function Home() {
                 </div>
 
                 <ScrollArrow
-                    maxHeight={150}
+                    maxHeight={200}
                     pxBufferUntilAnimation={100}
                     hasTip
                     sticky
